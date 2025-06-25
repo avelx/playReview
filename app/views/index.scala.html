@@ -1,11 +1,11 @@
-@(users: List[User])
+@import viewModels._
+@(viewModel: UserViewModel)
 
 @main("Welcome to Play") {
   <h1 id="uniqueId">Here is a list of users</h1>
-
   <ul>
-  @for(user <- users) {
-    <li>@user.name</li>
-  }
+    @for(user <- viewModel.users) {
+      <li>@user.name</li>
+    }
   </ul>
 }

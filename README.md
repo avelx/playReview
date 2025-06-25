@@ -9,6 +9,7 @@ Interview preparation:
 
 * Twirl templating:
 * https://www.playframework.com/documentation/3.0.x/ScalaTemplates
+* https://github.com/playframework/twirl
 
 * JavaScript:
 * https://www.w3schools.com/js/js_intro.asp

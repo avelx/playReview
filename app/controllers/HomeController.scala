@@ -4,6 +4,7 @@ import javax.inject.*
 import play.api.*
 import play.api.mvc.*
 import services.UserService
+import viewModels.UserViewModel
 
 import scala.concurrent.ExecutionContext
 
@@ -27,8 +28,9 @@ class HomeController @Inject()(
   def index() = Action.async { implicit request: Request[AnyContent] =>
     val usersFuture = userService.getAll
     usersFuture.map{ users =>
-      Ok(views.html.index(users))  
+      val viewModel : UserViewModel = UserViewModel(users = users)
+      Ok(views.html.index(viewModel))
     }
-    
+
   }
 }
