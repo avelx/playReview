@@ -3,7 +3,7 @@ package controllers
 import javax.inject.*
 import play.api.*
 import play.api.mvc.*
-import services.UserService
+import services.{PlaceService, UserService}
 import viewModels.UserViewModel
 
 import scala.concurrent.ExecutionContext
@@ -15,7 +15,8 @@ import scala.concurrent.ExecutionContext
 @Singleton
 class HomeController @Inject()(
                                 val controllerComponents: ControllerComponents,
-                                userService: UserService
+                                userService: UserService,
+                                placeService: PlaceService
                               )(implicit ex: ExecutionContext) extends BaseController {
 
   /**
@@ -31,6 +32,14 @@ class HomeController @Inject()(
       val viewModel : UserViewModel = UserViewModel(users = users)
       Ok(views.html.index(viewModel))
     }
-
   }
+
+  def place() = Action.async{ implicit  request: Request[AnyContent] =>
+    val allPlacesFuture = placeService.getAll
+    allPlacesFuture.map{ places =>
+      Ok(views.html.places(places))
+    }
+  }
+
+
 }

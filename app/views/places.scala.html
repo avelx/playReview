@@ -1,0 +1,11 @@
+@import models.Place
+@(places: List[Place])
+
+@main("List of places") {
+  <h1 id="uniqueId">Places</h1>
+  <ul>
+    @for(place <- places) {
+      <li>Name: @place.name and location @place.location</li>
+    }
+  </ul>
+}
