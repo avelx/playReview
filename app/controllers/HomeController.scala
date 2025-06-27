@@ -15,8 +15,8 @@ import scala.concurrent.ExecutionContext
 @Singleton
 class HomeController @Inject()(
                                 val controllerComponents: ControllerComponents,
-                                userService: UserService,
-                                placeService: PlaceService
+                                val userService: UserService,
+                                val placeService: PlaceService
                               )(implicit ex: ExecutionContext) extends BaseController {
 
   /**
@@ -26,7 +26,7 @@ class HomeController @Inject()(
    * will be called when the application receives a `GET` request with
    * a path of `/`.
    */
-  def index() = Action.async { implicit request: Request[AnyContent] =>
+  def index(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
     val usersFuture = userService.getAll
     usersFuture.map{ users =>
       val viewModel : UserViewModel = UserViewModel(users = users)
@@ -34,7 +34,7 @@ class HomeController @Inject()(
     }
   }
 
-  def place() = Action.async{ implicit  request: Request[AnyContent] =>
+  def place(): Action[AnyContent] = Action.async{ implicit request: Request[AnyContent] =>
     val allPlacesFuture = placeService.getAll
     allPlacesFuture.map{ places =>
       Ok(views.html.places(places))

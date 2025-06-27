@@ -1,19 +1,26 @@
 package services
 
 import com.google.inject.Singleton
+import connector.UserConnector
 import models.User
 
-import scala.concurrent.Future
+import javax.inject.Inject
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class UserService {
+class UserService @Inject()(val connector: UserConnector)
+                 (implicit val ec: ExecutionContext){
 
   def getAll: Future[List[User]] = {
-    val userList : List[User] = List(
-      User("1", "Alex"),
-      User("3", "Fox"),
-      User("4", "Dog")
-    )
-    Future.successful(userList)
+    connector.getAllUsers.flatMap{
+      case Right(users) =>
+        Future.successful(users)
+      case Left(err) =>
+        throw err
+    }
+  }
+  
+  def getById(userId: String): Future[Either[String, User]] = {
+    connector.getUserById(userId)
   }
 }
