@@ -2,9 +2,11 @@ package connector
 
 import jakarta.inject.Singleton
 import models.User
+import com.google.inject.ImplementedBy
 
 import scala.concurrent.Future
 
+@ImplementedBy(classOf[UserConnectorImpl])
 trait UserConnector{
   def getUserById(userId: String): Future[Either[String, User]]
   def getAllUsers: Future[Either[Throwable, List[User]]]

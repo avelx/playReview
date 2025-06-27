@@ -8,7 +8,7 @@ import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class UserService @Inject()(val connector: UserConnectorImpl)
+class UserService @Inject()(val connector: UserConnector)
                  (implicit val ec: ExecutionContext){
 
   def getAll: Future[List[User]] = {

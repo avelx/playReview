@@ -6,7 +6,7 @@ import models.User
 import scala.concurrent.{ExecutionContext, Future}
 
 
-class FakeUserConnector(implicit ec: ExecutionContext) extends UserConnector {
+class FakeUserConnectorImpl(implicit ec: ExecutionContext) extends UserConnector {
 
     private val userList: List[User] = List(
       User("1", "Alex"),
