@@ -1,14 +1,14 @@
 package services
 
 import com.google.inject.Singleton
-import connector.UserConnector
+import connector.{UserConnector, UserConnectorImpl}
 import models.User
 
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class UserService @Inject()(val connector: UserConnector)
+class UserService @Inject()(val connector: UserConnectorImpl)
                  (implicit val ec: ExecutionContext){
 
   def getAll: Future[List[User]] = {
@@ -19,7 +19,7 @@ class UserService @Inject()(val connector: UserConnector)
         throw err
     }
   }
-  
+
   def getById(userId: String): Future[Either[String, User]] = {
     connector.getUserById(userId)
   }
