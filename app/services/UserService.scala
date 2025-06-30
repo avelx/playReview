@@ -1,7 +1,7 @@
 package services
 
 import com.google.inject.Singleton
-import connector.{UserConnector, UserConnectorImpl}
+import connector.{UserConnector}
 import models.User
 
 import javax.inject.Inject

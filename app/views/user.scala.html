@@ -1,0 +1,12 @@
+@import forms.UserData
+
+@(userForm: Form[UserData])(implicit messages: Messages)
+
+@main("Welcome to Play") {
+
+    @helper.form(action = routes.UserController.show) {
+        @helper.inputText(userForm("name"))
+        @helper.inputText(userForm("age"))
+    }
+
+}
