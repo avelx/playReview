@@ -1,12 +1,15 @@
-@import forms.UserData
+@import forms.UserDataForm
+@import helper._
 
-@(userForm: Form[UserData])(implicit messages: Messages)
+@(userForm: Form[UserDataForm])(implicit messages: Messages)
 
 @main("Welcome to Play") {
 
-    @helper.form(action = routes.UserController.show) {
+    @helper.form(action = routes.UserController.update) {
         @helper.inputText(userForm("name"))
         @helper.inputText(userForm("age"))
+        <button id="btnName" type="submit">Submit</button>
     }
+
 
 }

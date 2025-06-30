@@ -19,4 +19,7 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 #Define forms
 GET     /show                       controllers.UserController.show
-POST    /show                       controllers.UserController.show
+
+#TODO: we need to re-enable CSRF
++ nocsrf
+POST    /show                       controllers.UserController.update

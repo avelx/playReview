@@ -1,6 +1,7 @@
 package controllers
 
-import forms.UserData.userFormWithConstraint
+import forms.UserDataForm
+import forms.UserDataForm.*
 import jakarta.inject.{Inject, Singleton}
 import play.api.Logger
 import play.api.i18n.{I18nSupport, Langs, MessagesApi}
@@ -17,8 +18,10 @@ class UserController @Inject() (
   private val logger = Logger(getClass)
 
   def show: Action[AnyContent] = Action { implicit request =>
-    //val messages = implicitly[Messages]
-    //Ok(views.html.user(userFormWithConstraint))
+    Ok(views.html.user(userFormWithConstraint.fill(UserDataForm("", 0))))
+  }
+
+  def update: Action[AnyContent] = Action { implicit request =>
 
     userFormWithConstraint
       .bindFromRequest()
