@@ -5,11 +5,14 @@
 
 @main("Welcome to Play") {
 
-    @helper.form(action = routes.UserController.update) {
-        @helper.inputText(userForm("name"))
-        @helper.inputText(userForm("age"))
-        <button id="btnName" type="submit">Submit</button>
-    }
+    <div>
+        @helper.form(action = routes.UserController.update) {
+            @helper.inputText(userForm("name"))
+            @helper.inputText(userForm("age"))
+            <button id="btnName" type="submit">Submit</button>
+        }
+    </div>
+
 
 
 }

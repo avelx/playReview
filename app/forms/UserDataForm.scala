@@ -11,7 +11,7 @@ object UserDataForm {
   val userFormWithConstraint: Form[UserDataForm] = Form(
     mapping(
       "name" -> nonEmptyText,
-      "age" -> number(min = 0, max = 100)
+      "age" -> number(min = 5, max = 100)
     )(UserDataForm.apply)(UserDataForm.unapply)
   )
 }
