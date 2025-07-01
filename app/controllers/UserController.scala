@@ -36,7 +36,7 @@ class UserController @Inject() (
           //val id = models.User.create(newUser)
           //Redirect(routes.Application.home(id))
           logger.info(s"User data: $userData")
-          Redirect(routes.HomeController.index())
+          Redirect(routes.HomeController.index(Some("name")))
         }
       )
   }

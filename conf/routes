@@ -7,8 +7,8 @@
 GET     /public/*file      controllers.Assets.at(path="/public", file)
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index()
-GET     /places                     controllers.HomeController.place()
+GET     /                      controllers.HomeController.index(name: Option[String])
+GET     /places/:id                     controllers.HomeController.place(id: String)
 
 # Data endpoints
 GET     /users                      controllers.DataEndpointController.getUsers()

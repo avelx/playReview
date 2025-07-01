@@ -19,6 +19,8 @@ class HomeController @Inject()(
                                 val placeService: PlaceService
                               )(implicit ex: ExecutionContext) extends BaseController {
 
+  private val logger = Logger(getClass)
+
   /**
    * Create an Action to render an HTML page.
    *
@@ -26,7 +28,8 @@ class HomeController @Inject()(
    * will be called when the application receives a `GET` request with
    * a path of `/`.
    */
-  def index(): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+  def index(name: Option[String]): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+    logger.info(s"[HomeController]::index => $name")
     val usersFuture = userService.getAll
     usersFuture.map{ users =>
       val viewModel : UserViewModel = UserViewModel(users = users)
@@ -34,7 +37,8 @@ class HomeController @Inject()(
     }
   }
 
-  def place(): Action[AnyContent] = Action.async{ implicit request: Request[AnyContent] =>
+  def place(id: String): Action[AnyContent] = Action.async{ implicit request: Request[AnyContent] =>
+    logger.info(s"[HomeController]::places => $id")
     val allPlacesFuture = placeService.getAll
     allPlacesFuture.map{ places =>
       Ok(views.html.places(places))
