@@ -11,6 +11,8 @@ libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.0
 
 scalacOptions ++= Seq("-new-syntax", "-rewrite")
 
+
+
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.example.controllers._"
 

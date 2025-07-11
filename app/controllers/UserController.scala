@@ -12,7 +12,7 @@ import scala.concurrent.ExecutionContext
 @Singleton
 class UserController @Inject() (
                                  val controllerComponents: ControllerComponents,
-                                 langs: Langs, messagesApi: MessagesApi
+                                 lang: Langs, messagesApi: MessagesApi
                                )(implicit ex: ExecutionContext) extends BaseController with I18nSupport  {
 
   private val logger = Logger(getClass)
